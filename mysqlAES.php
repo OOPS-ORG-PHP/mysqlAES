@@ -76,7 +76,7 @@ Class mysqlAES {
 	 * This method is compatible HEX function of mysql
 	 *
 	 * Example:
-	 * {@example pear_mysqlAES/test.php 16 16}
+	 * {@example pear_mysqlAES/test.php 16 1}
 	 *
 	 * @access public
 	 * @return string hexadecimal data
@@ -94,7 +94,7 @@ Class mysqlAES {
 	 * This method is compatible UNHEX function of mysql
 	 *
 	 * Example:
-	 * {@example pear_mysqlAES/test.php 19 19}
+	 * {@example pear_mysqlAES/test.php 19 1}
 	 *
 	 * @access public
 	 * @return string
