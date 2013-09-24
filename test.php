@@ -1,5 +1,4 @@
 <?php
-
 require_once 'mysqlAES';
 
 $cipher = '123123 궁중 떡뽁이';
@@ -20,7 +19,7 @@ try {
 		$dec = mysqlAES::decrypt (mysqlAES::unhex ($enc), $val);
 		printf ('%d bit revoke    : %s' . PHP_EOL, $key, $dec);
 	}
-} catch (myException $e) {
+} catch ( myException $e ) {
     fprintf (STDERR, "%s\n", $e->Message ());
 	#print_r ($e);
 	#print_r ($e->Trace ());

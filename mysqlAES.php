@@ -12,6 +12,10 @@
  * key 길이가 192또는 256bit일 경우에는 oops에서 제공하는 lib_mysqludf_aes256
  * UDF에서 제공하는 AES256_ENCRYPT, AES256_DECRYPT와 완변하게 호환이 된다.
  *
+ * 예제:
+ * {@example pear_mysqlAES/test.php}
+ *
+ *
  * @category    Encryption
  * @package     mysqlAES
  * @author      JoungKyun.Kim <http://oops.org>
@@ -20,7 +24,9 @@
  * @version     SVN: $Id$
  * @link        http://pear.oops.org/package/mysqlAES
  * @since       File available since release 0.0.1
+ * @example     pear_mysqlAES/test.php mysqlAES 예제
  * @filesource
+ *
  */
 
 /**
@@ -34,6 +40,15 @@ set_error_handler('myException::myErrorHandler');
 /**
  * mysqlAES 패키지는 MySQL의 AES_EMCRYPT, AES_DECRYPT, HEX, UNHEX 함수를
  * php에서 호환되게 사용할 수 있도록 하는 기능을 제공한다.
+ *
+ * encrypt method와 decrypt method의 경우, key 길이가 128bit(16byte)이면
+ * MySQL과 MariaDB의 AES_ENCRYPT/AES_DECRYPT 함수와 완벽하게 호환이 된다.
+ *
+ * key 길이가 192또는 256bit일 경우에는 oops에서 제공하는 lib_mysqludf_aes256
+ * UDF에서 제공하는 AES256_ENCRYPT, AES256_DECRYPT와 완변하게 호환이 된다.
+ *
+ * 예제:
+ * {@example pear_mysqlAES/test.php}
  *
  * @package mysqlAES
  */
@@ -60,6 +75,9 @@ Class mysqlAES {
 	 *
 	 * This method is compatible HEX function of mysql
 	 *
+	 * Example:
+	 * {@example pear_mysqlAES/test.php 16 16}
+	 *
 	 * @access public
 	 * @return string hexadecimal data
 	 * @param  string original data
@@ -74,6 +92,9 @@ Class mysqlAES {
 	 * Return a string containing hex representation of a number
 	 *
 	 * This method is compatible UNHEX function of mysql
+	 *
+	 * Example:
+	 * {@example pear_mysqlAES/test.php 19 19}
 	 *
 	 * @access public
 	 * @return string
@@ -90,16 +111,19 @@ Class mysqlAES {
 	 *
 	 * This method is compatible AES_ENCRYPT function of mysql, if key is 128 bit.
 	 * And then, If key is 192 or 256 bit, this method is compatible follow APIS:
-	 *  - MySQL UDF  : <a href="http://mirror.oops.org/pub/oops/mysql/lib_mysqludf_aes256/">lib_mysqludf_aes256</a>
-	 *  - Javascript : <a href="http://mirror.oops.org/pub/oops/javascript/mysqlAES/">mysqlAES class</a>
+	 *  - {@link http://mirror.oops.org/pub/oops/mysql/lib_mysqludf_aes256/ MySQL UDF lib_mysqludf_aes256}
+	 *  - {@link http://mirror.oops.org/pub/oops/javascript/mysqlAES/ Javascript mysqlAES class}
+	 *
+	 * Example:
+	 * {@example pear_mysqlAES/test.php}
 	 *
 	 * @access public
 	 * @return string encrypted data by AES
 	 * @param  string data for being encryption
 	 * @param  string encryption key
-	 *   - 128bit length of 16byte
-	 *   - 192bit length of 24byte
-	 *   - 256bit length of 24byte
+	 *   - 128bit : 16 byte string
+	 *   - 192bit : 24 byte string
+	 *   - 256bit : 32 byte string
 	 */
 	static public function encrypt ($cipher, $key) {
 		if ( ! $cipher || ! $key )
@@ -120,16 +144,19 @@ Class mysqlAES {
 	 *
 	 * This method is compatible AES_DECRYPT function of mysql, if key is 128 bit
 	 * And then, If key is 192 or 256 bit, this method is compatible follow APIS:
-	 *  - MySQL UDF  : <a href="http://mirror.oops.org/pub/oops/mysql/lib_mysqludf_aes256/">lib_mysqludf_aes256</a>
-	 *  - Javascript : <a href="http://mirror.oops.org/pub/oops/javascript/mysqlAES/">mysqlAES class</a>
+	 *  - {@link http://mirror.oops.org/pub/oops/mysql/lib_mysqludf_aes256/ MySQL UDF lib_mysqludf_aes256}
+	 *  - {@link http://mirror.oops.org/pub/oops/javascript/mysqlAES/ Javascript mysqlAES class}
+	 *
+	 * Example:
+	 * {@example pear_mysqlAES/test.php}
 	 *
 	 * @access public
 	 * @return string decrypted data by AES
 	 * @param  string cipher data for being decryption
 	 * @param  string decryption key
-	 *   - 128bit length of 16byte
-	 *   - 192bit length of 24byte
-	 *   - 256bit length of 24byte
+	 *   - 128bit : 16 byte string
+	 *   - 192bit : 24 byte string
+	 *   - 256bit : 32 byte string
 	 */
 	static public function decrypt ($cipher, $key) {
 		if ( ! $cipher || ! $key )
@@ -170,6 +197,12 @@ Class mysqlAES {
 }
 
 // {{{ +-- public mysqlAES_REQUIRES (void)
+/**
+ * mysqlAES 패키지에서 필요한 의존성을 검사한다.
+ *
+ * @access public
+ * @return void
+ */
 function mysqlAES_REQUIRES () {
 	if ( ! class_exists ('myException') ) {
 		$br = PHP_EOL;
