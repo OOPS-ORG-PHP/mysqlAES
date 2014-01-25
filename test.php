@@ -1,5 +1,5 @@
 <?php
-require_once 'mysqlAES';
+require_once 'mysqlAES.php';
 
 $cipher = '123123 궁중 떡뽁이';
 $keys = array (
