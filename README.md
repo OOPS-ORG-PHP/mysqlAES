@@ -9,6 +9,10 @@ Also, this api supports hex and unhex API that is compatble with MySQL and Maria
 If encrypt with 128bit, this api is operate in the same way with AES_ENCRYPT and
 AES_DECRYPT of MySQL or MariaDB.
 
+## License
+
+BSD 2-Clause
+
 ## Installation
 
 mysqlAES package needs two external libraries.
