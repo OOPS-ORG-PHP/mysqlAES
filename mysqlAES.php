@@ -31,7 +31,9 @@
 /**
  * import oops/myException class
  */
-@require_once 'myException.php';
+if ( ! class_exists ('myException') ) {
+	require_once 'myException.php';
+}
 mysqlAES_REQUIRES ();
 
 set_error_handler('myException::myErrorHandler');

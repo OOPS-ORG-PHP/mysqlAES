@@ -11,7 +11,7 @@
 		<active>yes</active>
 	</lead>
 	<date>2018-02-16</date>
-	<time>18:52:27</time>
+	<time>20:09:37</time>
 	<version>
 		<release>1.0.1</release>
 		<api>1.0.0</api>
@@ -22,10 +22,11 @@
 	</stability>
 	<license>GPLv2</license>
 	<notes>* support openssl extension
+* support composer
 </notes>
 	<contents>
 		<dir name="/">
-			<file role="php" md5sum="670fa41b66983d651ba37d9141ae82ce" name="mysqlAES.php" />
+			<file role="php" md5sum="e1333f7fa9927148fd3f11471a8bf12c" name="mysqlAES.php" />
 		</dir>
 	</contents>
 	<dependencies>
@@ -65,6 +66,7 @@
 			<date>2018-02-16</date>
 			<license>GPLv2</license>
 			<notes>* support openssl extension
+* support composer
 </notes>
 		</release>
 		<release>

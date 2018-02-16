@@ -1,0 +1,26 @@
+{
+	"name": "joungkyun/mysqlaes",
+	"description": "Support AES-256 encrypt and decrypt class APIs",
+	"type": "library",
+	"keyword": [ "encrypt", "decrypt", "AES-256", "AES-192", "AES-128" ],
+	"homepage": "https://github.com/OOPS-ORG-PHP/mysqlAES",
+	"license": "BSD-2-Clause",
+	"author": [
+		{
+			"name": "JoungKyun Kim",
+			"email": "joungkyun@daum.net",
+			"homepage": "https://joungkyun.github.com"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/OOPS-ORG-PHP/mysqlAES/issues"
+	},
+	"autoload": {
+		"files": [ "mysqlAES.php" ]
+	},
+	"require": {
+		"php": ">=5.0.0",
+		"ext-openssl": "*",
+		"joungkyun/myexception": ">=1.0.0"
+	}
+}

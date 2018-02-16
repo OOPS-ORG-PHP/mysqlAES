@@ -22,7 +22,7 @@ mysqlAES package needs two external libraries.
       * mcrypt extension has been removed in PHP 7.2
   2. [myException class API](https://github.com/OOPS-ORG-PHP/myException)
   
-And, you can install in two ways that are download source files by hands or using pear command. If you choose to install manually, you will also need to install the required external libraries yourself. Therefore, it is recommended to use the pear command to reduce this effort.
+And, you can install in three ways that are download source files by hands or using pear command or use composer. If you choose to install manually, you will also need to install the required external libraries yourself. Therefore, it is recommended to use the pear command to reduce this effort.
 
 ### * Download source files
 
@@ -39,6 +39,48 @@ This method is needed root privileges.
   [root@host ~]$ pear channel-discover pear.oops.org
   [root@host ~]$ pear install oops/mysqlAES
   [root@host ~]$ pear list -a
+  ```
+
+### * Use composer
+
+first, make composer.json as follow:
+
+  ```json
+  {
+      "require": {
+          "joungkyun/mysqlaes": "1.*"
+      }
+  }
+  ```
+
+and, install mysqlAES
+
+  ```bash
+  [user@host project]$ php composer.phpt install
+  Loading composer repositories with package information
+  Updating dependencies (including require-dev)
+  Package operations: 2 installs, 0 updates, 0 removals
+    - Installing joungkyun/myexception (1.0.2): Downloading (100%)
+    - Installing joungkyun/mysqlaes (1.0.1): Downloading (100%)
+  Writing lock file
+  Generating autoload files
+  [user@host project]$
+  ```
+
+and, write code as follow:
+
+  ```php
+  <?php
+  require_once 'vendor/autoload.php';
+
+  echo 'mysqlAES is supported ';
+  if ( class_exists('mysqlAES') )
+      echo 'YES';
+  else
+      echo 'NO';
+
+  echo "\n";
+  ?>
   ```
 
 ## APIs
