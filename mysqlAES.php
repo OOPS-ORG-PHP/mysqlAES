@@ -13,18 +13,17 @@
  * UDF에서 제공하는 AES256_ENCRYPT, AES256_DECRYPT와 완변하게 호환이 된다.
  *
  * 예제:
- * {@example pear_mysqlAES/test.php}
+ * {@example mysqlAES/test.php}
  *
  *
  * @category    Encryption
  * @package     mysqlAES
  * @author      JoungKyun.Kim <http://oops.org>
- * @copyright   (c) 2015 OOPS.org
+ * @copyright   (c) 2018, OOPS.org
  * @license     BSD License
- * @version     SVN: $Id$
  * @link        http://pear.oops.org/package/mysqlAES
  * @since       File available since release 0.0.1
- * @example     pear_mysqlAES/test.php mysqlAES 예제
+ * @example     mysqlAES/test.php mysqlAES 예제
  * @filesource
  *
  */
@@ -48,7 +47,7 @@ set_error_handler('myException::myErrorHandler');
  * UDF에서 제공하는 AES256_ENCRYPT, AES256_DECRYPT와 완변하게 호환이 된다.
  *
  * 예제:
- * {@example pear_mysqlAES/test.php}
+ * {@example mysqlAES/test.php}
  *
  * @package mysqlAES
  */
@@ -76,7 +75,7 @@ Class mysqlAES {
 	 * This method is compatible HEX function of mysql
 	 *
 	 * Example:
-	 * {@example pear_mysqlAES/test.php 16 1}
+	 * {@example mysqlAES/test.php 16 1}
 	 *
 	 * @access public
 	 * @return string hexadecimal data
@@ -94,7 +93,7 @@ Class mysqlAES {
 	 * This method is compatible UNHEX function of mysql
 	 *
 	 * Example:
-	 * {@example pear_mysqlAES/test.php 19 1}
+	 * {@example mysqlAES/test.php 19 1}
 	 *
 	 * @access public
 	 * @return string
@@ -115,7 +114,7 @@ Class mysqlAES {
 	 *  - {@link http://mirror.oops.org/pub/oops/javascript/mysqlAES/ Javascript mysqlAES class}
 	 *
 	 * Example:
-	 * {@example pear_mysqlAES/test.php}
+	 * {@example mysqlAES/test.php}
 	 *
 	 * @access public
 	 * @return string encrypted data by AES
@@ -148,7 +147,7 @@ Class mysqlAES {
 	 *  - {@link http://mirror.oops.org/pub/oops/javascript/mysqlAES/ Javascript mysqlAES class}
 	 *
 	 * Example:
-	 * {@example pear_mysqlAES/test.php}
+	 * {@example mysqlAES/test.php}
 	 *
 	 * @access public
 	 * @return string decrypted data by AES
