@@ -17,7 +17,9 @@ BSD 2-Clause
 
 mysqlAES package needs two external libraries.
 
-  1. php mcrypt extension
+  1. php [mcrypt](http://php.net/manual/en/book.mcrypt.php) extension or [openssl](http://php.net/manual/en/book.openssl.php) extension
+      * mcrypt extension is deprecated in PHP 7.1
+      * mcrypt extension has been removed in PHP 7.2
   2. [myException class API](https://github.com/OOPS-ORG-PHP/myException)
   
 And, you can install in two ways that are download source files by hands or using pear command. If you choose to install manually, you will also need to install the required external libraries yourself. Therefore, it is recommended to use the pear command to reduce this effort.
