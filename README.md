@@ -15,6 +15,8 @@ BSD 2-Clause
 
 ## Installation
 
+mysqlAES 2.x works with PHP 7 and later. Use mysqlAES-1 branch or 1.x version for use with pre-PHP 7 versions. The ___mysqlAES-1___ branch also supports php 7.
+
 mysqlAES package needs follow external libraries.
 
   1. php [mcrypt](http://php.net/manual/en/book.mcrypt.php) extension or [openssl](http://php.net/manual/en/book.openssl.php) extension
@@ -47,7 +49,7 @@ first, make composer.json as follow:
   ```json
   {
       "require": {
-          "joungkyun/mysqlaes": "1.*"
+          "joungkyun/mysqlaes": "2.*"
       }
   }
   ```
@@ -59,7 +61,7 @@ and, install mysqlAES
   Loading composer repositories with package information
   Updating dependencies (including require-dev)
   Package operations: 2 installs, 0 updates, 0 removals
-    - Installing joungkyun/mysqlaes (1.0.1): Downloading (100%)
+    - Installing joungkyun/mysqlaes (2.0.0): Downloading (100%)
   Writing lock file
   Generating autoload files
   [user@host project]$

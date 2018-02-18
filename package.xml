@@ -11,17 +11,17 @@
 		<active>yes</active>
 	</lead>
 	<date>2018-02-19</date>
-	<time>01:14:38</time>
+	<time>01:49:37</time>
 	<version>
-		<release>1.0.2</release>
-		<api>1.0.0</api>
+		<release>2.0.0</release>
+		<api>2.0.0</api>
 	</version>
 	<stability>
 		<release>stable</release>
 		<api>stable</api>
 	</stability>
 	<license>GPLv2</license>
-	<notes>* remove myException dependency
+	<notes>* minimum php version is upto 7.0.0
 </notes>
 	<contents>
 		<dir name="/">
@@ -31,7 +31,7 @@
 	<dependencies>
 		<required>
 			<php>
-				<min>5.1.0</min>
+				<min>7.0.0</min>
 			</php>
 			<pearinstaller>
 				<min>1.4.3</min>
@@ -50,8 +50,8 @@
 	<changelog>
 		<release>
 			<version>
-				<release>1.0.2</release>
-				<api>1.0.0</api>
+				<release>2.0.0</release>
+				<api>2.0.0</api>
 			</version>
 			<stability>
 				<release>stable</release>
@@ -59,7 +59,7 @@
 			</stability>
 			<date>2018-02-19</date>
 			<license>GPLv2</license>
-			<notes>* remove myException dependency
+			<notes> * minimum php version is upto 7.0.0
 </notes>
 		</release>
 		<release>
