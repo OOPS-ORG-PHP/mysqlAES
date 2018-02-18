@@ -23,13 +23,9 @@ try {
 		$dec = mysqlAES::decrypt (mysqlAES::unhex ($enc), $val);
 		printf ('%d bit revoke    : %s' . PHP_EOL, $key, $dec);
 	}
-} catch ( myException $e ) {
-    fprintf (STDERR, "%s\n", $e->Message ());
-	#print_r ($e);
-	#print_r ($e->Trace ());
-	#echo $e->TraceAsString () . "\n";
-	print_r ($e->TraceAsArray ()) . "\n";
-	$e->finalize ();
+} catch ( Exception $e ) {
+    fprintf (STDERR, "%s\n", $e->getMessage ());
+	print_r ($e->getTrace ()) . "\n";
 }
 
 ?>

@@ -27,16 +27,7 @@
  * @filesource
  *
  */
-
-/**
- * import oops/myException class
- */
-if ( ! class_exists ('myException') ) {
-	require_once 'myException.php';
-}
 mysqlAES_REQUIRES ();
-
-set_error_handler('myException::myErrorHandler');
 
 /**
  * mysqlAES 패키지는 MySQL의 AES_EMCRYPT, AES_DECRYPT, HEX, UNHEX 함수를
@@ -262,33 +253,12 @@ Class mysqlAES {
  * @return void
  */
 function mysqlAES_REQUIRES () {
-	if ( ! class_exists ('myException') ) {
-		$br = PHP_EOL;
-		if ( PHP_SAPI != 'cli' )
-			$br = '<br>' . PHP_EOL;
-		$brbr = $br . $br;
-
-		$msg = sprintf (
-			$brbr .
-			'-------------------------------------------------' . $brbr .
-			'mysqlAES ERROR!' . $brbr .
-			'mysqlAES class needs oops/myException pear package' . $br .
-			'You can get myException pear package at' . $br .
-			'http://mirror.oops.org/pub/oops/php/pear/myException/' . $br .
-			'Also you can install with pear command as follow command' . $br .
-			'shell> pear channel-discover pear.oops.org' . $br .
-			'shell> pear install oops/myException' . $brbr .
-			'-------------------------------------------------' . $brbr
-		);
-		throw new Exception ($msg, E_USER_ERROR);
-	}
-
 	if ( extension_loaded ('mcrypt') )
 		mysqlAES::$extname = 'mcrypt';
 	else if ( extension_loaded ('openssl') )
 		mysqlAES::$extname = 'openssl';
 	else
-		throw new myException ('mysqlAES class must need mcrypt or openssl extension', E_USER_ERROR);
+		throw new Exception ('mysqlAES class must need mcrypt or openssl extension', E_USER_ERROR);
 }
 // }}}
 

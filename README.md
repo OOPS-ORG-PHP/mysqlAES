@@ -15,12 +15,11 @@ BSD 2-Clause
 
 ## Installation
 
-mysqlAES package needs two external libraries.
+mysqlAES package needs follow external libraries.
 
   1. php [mcrypt](http://php.net/manual/en/book.mcrypt.php) extension or [openssl](http://php.net/manual/en/book.openssl.php) extension
       * mcrypt extension is deprecated in PHP 7.1
       * mcrypt extension has been removed in PHP 7.2
-  2. [myException class API](https://github.com/OOPS-ORG-PHP/myException)
   
 And, you can install in three ways that are download source files by hands or using pear command or use composer. If you choose to install manually, you will also need to install the required external libraries yourself. Therefore, it is recommended to use the pear command to reduce this effort.
 
@@ -60,7 +59,6 @@ and, install mysqlAES
   Loading composer repositories with package information
   Updating dependencies (including require-dev)
   Package operations: 2 installs, 0 updates, 0 removals
-    - Installing joungkyun/myexception (1.0.2): Downloading (100%)
     - Installing joungkyun/mysqlaes (1.0.1): Downloading (100%)
   Writing lock file
   Generating autoload files

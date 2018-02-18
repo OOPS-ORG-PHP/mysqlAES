@@ -11,7 +11,7 @@
 		<active>yes</active>
 	</lead>
 	<date>2018-02-19</date>
-	<time>00:51:20</time>
+	<time>01:14:38</time>
 	<version>
 		<release>1.0.2</release>
 		<api>1.0.0</api>
@@ -21,11 +21,11 @@
 		<api>stable</api>
 	</stability>
 	<license>GPLv2</license>
-	<notes>
+	<notes>* remove myException dependency
 </notes>
 	<contents>
 		<dir name="/">
-			<file role="php" md5sum="aad2ebf756a5b54552c4092e55ad8f60" name="mysqlAES.php" />
+			<file role="php" md5sum="100999b6199158fae66bc223f411479e" name="mysqlAES.php" />
 		</dir>
 	</contents>
 	<dependencies>
@@ -44,11 +44,6 @@
 				<name>openssl</name>
 				<channel>php</channel>
 			</package>
-			<package>
-				<name>myException</name>
-				<channel>pear.oops.org</channel>
-				<min>1.0.1</min>
-			</package>
 		</required>
 	</dependencies>
 	<phprelease />
@@ -64,7 +59,7 @@
 			</stability>
 			<date>2018-02-19</date>
 			<license>GPLv2</license>
-			<notes>
+			<notes>* remove myException dependency
 </notes>
 		</release>
 		<release>
