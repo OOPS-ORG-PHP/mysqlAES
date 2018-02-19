@@ -20,6 +20,6 @@
 	},
 	"require": {
 		"php": ">=5.0.0",
-		"ext-openssl": "*",
+		"ext-openssl": "*"
 	}
 }
