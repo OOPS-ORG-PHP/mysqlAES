@@ -10,8 +10,8 @@
 		<email>joungkyun@gmail.com</email>
 		<active>yes</active>
 	</lead>
-	<date>2018-02-19</date>
-	<time>01:49:37</time>
+	<date>2018-02-20</date>
+	<time>01:27:18</time>
 	<version>
 		<release>2.0.0</release>
 		<api>2.0.0</api>
@@ -21,11 +21,12 @@
 		<api>stable</api>
 	</stability>
 	<license>GPLv2</license>
-	<notes>* minimum php version is upto 7.0.0
+	<notes>* minimum php version is upto 7.0.0 (#2)
+* add namesapce (#3)
 </notes>
 	<contents>
 		<dir name="/">
-			<file role="php" md5sum="100999b6199158fae66bc223f411479e" name="mysqlAES.php" />
+			<file role="php" md5sum="c032b85cf6ce2d63d91902848b015f08" name="mysqlAES.php" />
 		</dir>
 	</contents>
 	<dependencies>
@@ -57,9 +58,10 @@
 				<release>stable</release>
 				<api>stable</api>
 			</stability>
-			<date>2018-02-19</date>
+			<date>2018-02-20</date>
 			<license>GPLv2</license>
-			<notes> * minimum php version is upto 7.0.0
+			<notes> * minimum php version is upto 7.0.0 (#2)
+* add namesapce (#3)
 </notes>
 		</release>
 		<release>

@@ -27,6 +27,8 @@
  * @filesource
  *
  */
+namespace oops\Encrypt;
+
 mysqlAES_REQUIRES ();
 
 /**
@@ -257,8 +259,12 @@ function mysqlAES_REQUIRES () {
 		mysqlAES::$extname = 'mcrypt';
 	else if ( extension_loaded ('openssl') )
 		mysqlAES::$extname = 'openssl';
-	else
-		throw new Exception ('mysqlAES class must need mcrypt or openssl extension', E_USER_ERROR);
+	else {
+		throw new \Exception (
+			__NAMESPACE__ . '\mysqlAES class must need mcrypt or openssl extension',
+			E_USER_ERROR
+		);
+	}
 }
 // }}}
 

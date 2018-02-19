@@ -60,7 +60,7 @@ and, install mysqlAES
   [user@host project]$ php composer.phpt install
   Loading composer repositories with package information
   Updating dependencies (including require-dev)
-  Package operations: 2 installs, 0 updates, 0 removals
+  Package operations: 1 installs, 0 updates, 0 removals
     - Installing joungkyun/mysqlaes (2.0.0): Downloading (100%)
   Writing lock file
   Generating autoload files
@@ -74,7 +74,7 @@ and, write code as follow:
   require_once 'vendor/autoload.php';
 
   echo 'mysqlAES is supported ';
-  if ( class_exists('mysqlAES') )
+  if ( class_exists ('oops\Encrypt\mysqlAES') )
       echo 'YES';
   else
       echo 'NO';
@@ -87,15 +87,17 @@ and, write code as follow:
 
 See also [mysqlAES reference](http://pear.oops.org/docs/mysqlAES/mysqlAES.html) page.
 
-* mysqlAES::hex(STRING)
-* mysqlAES::unhex(STRING)
-* mysqlAES::encrypt(STRING, KEY)
-* mysqlAES::decrypt(ENCRYPTED_STRING, KEY)
+* oops\Encrypt\mysqlAES::hex(STRING)
+* oops\Encrypt\mysqlAES::unhex(STRING)
+* oops\Encrypt\mysqlAES::encrypt(STRING, KEY)
+* oops\Encrypt\mysqlAES::decrypt(ENCRYPTED_STRING, KEY)
 
 ### Examples:
 ```php
 <?php
 require_once 'mysqlAES.php';
+
+use oops\Encrypt;
 
 $string = "123 abced\n";
 $key    = '0123456789012345';
