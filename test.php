@@ -3,9 +3,6 @@ require_once 'mysqlAES.php';
 
 use oops\Encrypt\mysqlAES as myAES;
 
-#mysqlAES::$extname = 'openssl';
-echo "Extension Type:: " . myAES::$extname . "\n\n";
-
 $cipher = '123123 궁중 떡뽁이';
 $keys = array (
 	'128' => '0123456789012345',
@@ -15,6 +12,10 @@ $keys = array (
 
 try {
 	printf ('Original Data     : %s' . PHP_EOL, $cipher);
+	printf ("Expected Data     :\n");
+	printf ("           128bit : E788F1C5FB172B546DA83BAE78D2E07863263129FA8539C443B35512CF8447E4\n");
+	printf ("           192bit : 08DBCABD2875EAC628630EF2033CABBE72C8E13D7197B9EE8F6845336A9C0806\n");
+	printf ("           256bit : DAE591EE85369CBFF489FBB2E791934ACD14329CC94D756D3A26B119AC7C9DC5\n");
 
 	foreach ( $keys as $key => $val ) {
 		echo "------------------------------------------------------------------------------------\n";

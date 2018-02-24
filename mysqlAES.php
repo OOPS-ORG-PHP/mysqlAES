@@ -54,26 +54,13 @@ Class mysqlAES {
 	const AES_BLOCK_SIZE = 16;
 	// }}}
 	
-	/**
-	 * Variables for separating mcrypt or openssl extensions.
-	 * mcrypt takes precedence over openssl.
-	 * @access public
-	 * @var string
-	 */
-	static public $extname = null;
-
 	// {{{ +-- public __construct (void)
 	/**
 	 * mysqlAES 초기화
 	 *
 	 * @access public
 	 */
-	function __construct () {
-		if ( extension_loaded ('mcrypt') )
-			$this->extname = 'mcrypt';
-		else if ( extension_loaded ('openssl') )
-			$this->extname = 'openssl';
-	}
+	function __construct () { }
 	// }}}
 
 	// {{{ +-- static public (string) hex ($v)
@@ -119,18 +106,14 @@ Class mysqlAES {
 	 * @return string encrypted data by AES
 	 */
 	static private function _encrypt ($cipher, $key) {
-		if ( self::$extname == 'mcrypt' )
-			return mcrypt_encrypt (MCRYPT_RIJNDAEL_128, $key, $cipher, MCRYPT_MODE_ECB);
-		else {
-			$keylen = strlen ($key);
-			if ( $keylen <= 16 )
-				$method = 'AES-128-ECB';
-			else if ( $keylen <= 24 )
-				$method = 'AES-192-ECB';
-			else
-				$method = 'AES-256-ECB';
-			return openssl_encrypt ($cipher, $method, $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
-		}
+		$keylen = strlen ($key);
+		if ( $keylen <= 16 )
+			$method = 'AES-128-ECB';
+		else if ( $keylen <= 24 )
+			$method = 'AES-192-ECB';
+		else
+			$method = 'AES-256-ECB';
+		return openssl_encrypt ($cipher, $method, $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
 	}
 	// }}}
 
@@ -174,18 +157,14 @@ Class mysqlAES {
 	 * @return string encrypted data by AES
 	 */
 	static private function _decrypt ($cipher, $key) {
-		if ( self::$extname == 'mcrypt' )
-			return mcrypt_decrypt (MCRYPT_RIJNDAEL_128, $key, $cipher, MCRYPT_MODE_ECB);
-		else {
-			$keylen = strlen ($key);
-			if ( $keylen <= 16 )
-				$method = 'AES-128-ECB';
-			else if ( $keylen <= 24 )
-				$method = 'AES-192-ECB';
-			else
-				$method = 'AES-256-ECB';
-			return openssl_decrypt ($cipher, $method, $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
-		}
+		$keylen = strlen ($key);
+		if ( $keylen <= 16 )
+			$method = 'AES-128-ECB';
+		else if ( $keylen <= 24 )
+			$method = 'AES-192-ECB';
+		else
+			$method = 'AES-256-ECB';
+		return openssl_decrypt ($cipher, $method, $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
 	}
 	// }}}
 
@@ -255,13 +234,9 @@ Class mysqlAES {
  * @return void
  */
 function mysqlAES_REQUIRES () {
-	if ( extension_loaded ('mcrypt') )
-		mysqlAES::$extname = 'mcrypt';
-	else if ( extension_loaded ('openssl') )
-		mysqlAES::$extname = 'openssl';
-	else {
+	if ( ! extension_loaded ('openssl') ) {
 		throw new \Exception (
-			__NAMESPACE__ . '\mysqlAES class must need mcrypt or openssl extension',
+			__NAMESPACE__ . '\mysqlAES class must need openssl extension',
 			E_USER_ERROR
 		);
 	}

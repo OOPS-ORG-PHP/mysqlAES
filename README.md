@@ -19,9 +19,7 @@ mysqlAES 2.x works with PHP 7 and later. Use mysqlAES-1 branch or 1.x version fo
 
 mysqlAES package needs follow external libraries.
 
-  1. php [mcrypt](http://php.net/manual/en/book.mcrypt.php) extension or [openssl](http://php.net/manual/en/book.openssl.php) extension
-      * mcrypt extension is deprecated in PHP 7.1
-      * mcrypt extension has been removed in PHP 7.2
+  1. php [openssl](http://php.net/manual/en/book.openssl.php) extension
   
 And, you can install in three ways that are download source files by hands or using pear command or use composer. If you choose to install manually, you will also need to install the required external libraries yourself. Therefore, it is recommended to use the pear command to reduce this effort.
 
