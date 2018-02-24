@@ -83,7 +83,8 @@ and, write code as follow:
 
 ## APIs
 
-See also [mysqlAES reference](http://pear.oops.org/docs/mysqlAES/mysqlAES.html) page.
+See also [mysqlAES reference](http://pear.oops.org/docs/mysqlAES/mysqlAES.html) pages.
+If you want to mysqlAES-1 reference, see also [mysqlAES-1 reference](http://pear.oops.org/docs/mysqlAES-1/li_mysqlAES.html) pages.
 
 * oops\Encrypt\mysqlAES::hex(STRING)
 * oops\Encrypt\mysqlAES::unhex(STRING)
