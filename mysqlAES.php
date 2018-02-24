@@ -84,10 +84,12 @@ Class mysqlAES {
 	 * {@example mysqlAES/test.php 16 1}
 	 *
 	 * @access public
-	 * @return string hexadecimal data
+	 * @return string hexadecimal data. If given parameter $v is empty, return null.
 	 * @param  string original data
 	 */
 	static public function hex ($v) {
+		if ( ! $v )
+			return null;
 		return strtoupper (bin2hex ($v));
 	}
 	// }}}
@@ -102,7 +104,8 @@ Class mysqlAES {
 	 * {@example mysqlAES/test.php 19 1}
 	 *
 	 * @access public
-	 * @return string
+	 * @return string Returns an ASCII string containing the hexadecimal representation.
+	 *                If given parameter $v is empty, return null.
 	 * @param  string hexadecimal data
 	 */
 	static public function unhex ($v) {
@@ -115,6 +118,8 @@ Class mysqlAES {
 	 * skeleton encrypt function
 	 * @access private
 	 * @return string encrypted data by AES
+	 * @param  string The plaintext message data to be encrypted. 
+	 * @param  string The key for encryption
 	 */
 	static private function _encrypt ($cipher, $key) {
 		if ( self::$extname == 'mcrypt' )
@@ -145,8 +150,8 @@ Class mysqlAES {
 	 * {@example mysqlAES/test.php}
 	 *
 	 * @access public
-	 * @return string encrypted data by AES
-	 * @param  string data for being encryption
+	 * @return string encrypted data by AES. If $cipyer or $key has empty value, return null
+	 * @param  string The plaintext message data to be encrypted. 
 	 * @param  string encryption key
 	 *   - 128bit : 16 byte string
 	 *   - 192bit : 24 byte string
@@ -157,11 +162,12 @@ Class mysqlAES {
 			return null;
 
 		$blocks = self::AES_BLOCK_SIZE * (floor (strlen ($cipher) / self::AES_BLOCK_SIZE) + 1);
-		$padlen = $blocks - strlen ($cipher);
+		$padlen = (int) $blocks - strlen ($cipher);
 
 		$cipher .= str_repeat (chr ($padlen), $padlen);
 
-		return self::_encrypt ($cipher, $key);
+		$r = self::_encrypt ($cipher, $key);
+		return !$r ? null : $r;
 	}
 	// }}}
 
@@ -172,9 +178,9 @@ Class mysqlAES {
 	 * @return string encrypted data by AES
 	 */
 	static private function _decrypt ($cipher, $key) {
-		if ( self::$extname == 'mcrypt' )
+		if ( self::$extname == 'mcrypt' ) {
 			return mcrypt_decrypt (MCRYPT_RIJNDAEL_128, $key, $cipher, MCRYPT_MODE_ECB);
-		else {
+		} else {
 			$keylen = strlen ($key);
 			if ( $keylen <= 16 )
 				$method = 'AES-128-ECB';
@@ -200,7 +206,7 @@ Class mysqlAES {
 	 * {@example mysqlAES/test.php}
 	 *
 	 * @access public
-	 * @return string decrypted data by AES
+	 * @return string decrypted data by AES. If $cipyer or $key has empty value, return null.
 	 * @param  string cipher data for being decryption
 	 * @param  string decryption key
 	 *   - 128bit : 16 byte string
@@ -211,7 +217,8 @@ Class mysqlAES {
 		if ( ! $cipher || ! $key )
 			return null;
 
-		$r = self::_decrypt ($cipher, $key);
+		if ( ! ($r = self::_decrypt ($cipher, $key)) )
+			return null;
 		$last = $r[strlen ($r) - 1];
 		$r = substr ($r, 0, strlen($r) - ord($last));
 		return $r;
@@ -225,15 +232,17 @@ Class mysqlAES {
 	 * Support hex2bin function if php version is less than 5.4.0.
 	 *
 	 * @access public
-	 * @return string Returns the binary representation of the given data or FALSE on failure.
+	 * @return string Returns the binary representation of the given data or null on failure.
 	 * @param  string Hexadecimal representation of data.
 	 */
 	private function hex2bin ($v) {
-		if ( function_exists ('hex2bin') )
-			return hex2bin ($v);
-
-		if ( ! is_string ($v) )
+		if ( ! $v || ! is_string ($v) )
 			return null;
+
+		if ( function_exists ('hex2bin') ) {
+			$r = hex2bin ($v);
+			return !$r ? null : $r;
+		}
 
 		$len = strlen ($v);
 		for ( $i=0; $i<$len; $i+=2 ) {
