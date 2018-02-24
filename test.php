@@ -17,13 +17,13 @@ try {
 	printf ("           192bit : 08DBCABD2875EAC628630EF2033CABBE72C8E13D7197B9EE8F6845336A9C0806\n");
 	printf ("           256bit : DAE591EE85369CBFF489FBB2E791934ACD14329CC94D756D3A26B119AC7C9DC5\n");
 
-	foreach ( $keys as $key => $val ) {
+	foreach ( $keys as $key => $enckey) {
 		echo "------------------------------------------------------------------------------------\n";
-		$enc = myAES::hex (myAES::encrypt ($cipher, $val));
+		$enc = myAES::hex (myAES::encrypt ($cipher, $enckey));
 		printf ('%d bit encryption: %s' . PHP_EOL, $key, $enc);
-		printf ('%d bit key length: %d' . PHP_EOL, $key, strlen ($val));
+		printf ('%d bit key length: %d' . PHP_EOL, $key, strlen ($enckey));
 		printf ('%d bit hex length: %d' . PHP_EOL, $key, strlen ($enc));
-		$dec = myAES::decrypt (myAES::unhex ($enc), $val);
+		$dec = myAES::decrypt (myAES::unhex ($enc), $enckey);
 		printf ('%d bit revoke    : %s' . PHP_EOL, $key, $dec);
 	}
 } catch ( Exception $e ) {

@@ -1,6 +1,9 @@
 <?php
+declare (strict_types=1);
+declare (encoding='UTF-8');
+
 /**
- * Project: mysqlAES :: MYSQL 호환 AES ENCRYPT/DECRYPT Class<br>
+ * Project: oops\Encrypt\mysqlAES :: MYSQL 호환 AES ENCRYPT/DECRYPT Class<br>
  * File:    mysqlAES.php
  *
  * mysqlAES 패키지는 MySQL의 AES_EMCRYPT, AES_DECRYPT, HEX, UNHEX 함수를
@@ -11,6 +14,13 @@
  *
  * key 길이가 192또는 256bit일 경우에는 oops에서 제공하는 lib_mysqludf_aes256
  * UDF에서 제공하는 AES256_ENCRYPT, AES256_DECRYPT와 완변하게 호환이 된다.
+ *
+ * 의존성:
+ * <ul style="margin-left: 30px;">
+ *    <li>php >= 7.1<br>
+ *        PHP 7.1 이전 버전에서는 1.0 branch 를 사용하십시오.</li>
+ *    <li>openssl extension</li>
+ * </ul>
  *
  * 예제:
  * {@example mysqlAES/test.php}
@@ -56,56 +66,65 @@ Class mysqlAES {
 	
 	// {{{ +-- public __construct (void)
 	/**
-	 * mysqlAES 초기화
+	 * oops\Encrypt\mysqlAES 초기화
 	 *
 	 * @access public
 	 */
 	function __construct () { }
 	// }}}
 
-	// {{{ +-- static public (string) hex ($v)
+	// {{{ +-- static public (string) hex (string $v = null)
 	/**
 	 * Return a hexadecimal representation of a decimal or string value
 	 *
 	 * This method is compatible HEX function of mysql
 	 *
 	 * Example:
-	 * {@example mysqlAES/test.php 16 1}
+	 * {@example mysqlAES/test.php 22 1}
 	 *
 	 * @access public
-	 * @return string hexadecimal data
+	 * @return string hexadecimal data. If given parameter $v is empty, return null.
 	 * @param  string original data
 	 */
-	static public function hex ($v) {
+	static public function hex (?string $v): ?string {
+		if ( ! $v )
+			return null;
 		return strtoupper (bin2hex ($v));
 	}
 	// }}}
 
-	// {{{ +-- static public (string) unhex ($v)
+	// {{{ +-- static public (string) unhex (string $v = null)
 	/**
 	 * Return a string containing hex representation of a number
 	 *
 	 * This method is compatible UNHEX function of mysql
 	 *
 	 * Example:
-	 * {@example mysqlAES/test.php 19 1}
+	 * {@example mysqlAES/test.php 26 1}
 	 *
 	 * @access public
-	 * @return string
+	 * @return string Returns an ASCII string containing the hexadecimal representation.
+	 *                If given parameter $v is empty, return null.
 	 * @param  string hexadecimal data
 	 */
-	static public function unhex ($v) {
-		return self::hex2bin ($v);
+	static public function unhex (?string $v): ?string {
+		if ( ! $v || ! is_string ($v) )
+			return null;
+
+		$r = hex2bin ($v);
+		return !$r ? null : $v;
 	}
 	// }}}
 
-	// {{{ +-- static private (string) _encrypt ($cipher, $key)
+	// {{{ +-- static private (string) _encrypt (string $cipher, string $key)
 	/**
 	 * skeleton encrypt function
 	 * @access private
 	 * @return string encrypted data by AES
+	 * @param  string The plaintext message data to be encrypted. 
+	 * @param  string The key for encryption
 	 */
-	static private function _encrypt ($cipher, $key) {
+	static private function _encrypt (string $cipher, string $key): ?string {
 		$keylen = strlen ($key);
 		if ( $keylen <= 16 )
 			$method = 'AES-128-ECB';
@@ -117,7 +136,7 @@ Class mysqlAES {
 	}
 	// }}}
 
-	// {{{ +-- static public (string) encrypt ($cipher, $key)
+	// {{{ +-- static public (string) encrypt (string $cipher = null, string $key = null)
 	/**
 	 * Encrypt using AES
 	 *
@@ -130,33 +149,34 @@ Class mysqlAES {
 	 * {@example mysqlAES/test.php}
 	 *
 	 * @access public
-	 * @return string encrypted data by AES
-	 * @param  string data for being encryption
+	 * @return string encrypted data by AES. If $cipyer or $key has empty value, return null
+	 * @param  string The plaintext message data to be encrypted. 
 	 * @param  string encryption key
 	 *   - 128bit : 16 byte string
 	 *   - 192bit : 24 byte string
 	 *   - 256bit : 32 byte string
 	 */
-	static public function encrypt ($cipher, $key) {
+	static public function encrypt (?string $cipher, ?string $key): ?string {
 		if ( ! $cipher || ! $key )
 			return null;
 
 		$blocks = self::AES_BLOCK_SIZE * (floor (strlen ($cipher) / self::AES_BLOCK_SIZE) + 1);
-		$padlen = $blocks - strlen ($cipher);
+		$padlen = (int) $blocks - strlen ($cipher);
 
 		$cipher .= str_repeat (chr ($padlen), $padlen);
 
-		return self::_encrypt ($cipher, $key);
+		$r = self::_encrypt ($cipher, $key);
+		return !$r ? null : $r;
 	}
 	// }}}
 
-	// {{{ +-- static private (string) _decrypt ($cipher, $key)
+	// {{{ +-- static private (string) _decrypt (string $cipher, string $key)
 	/**
 	 * skeleton encrypt function
 	 * @access private
 	 * @return string encrypted data by AES
 	 */
-	static private function _decrypt ($cipher, $key) {
+	static private function _decrypt (string $cipher, string $key): ?string {
 		$keylen = strlen ($key);
 		if ( $keylen <= 16 )
 			$method = 'AES-128-ECB';
@@ -168,7 +188,7 @@ Class mysqlAES {
 	}
 	// }}}
 
-	// {{{ +-- static public (string) decrypt ($cipher, $key)
+	// {{{ +-- static public (string) decrypt (string $cipher = null, string $key = null)
 	/**
 	 * Decrypt using AES
 	 *
@@ -181,46 +201,21 @@ Class mysqlAES {
 	 * {@example mysqlAES/test.php}
 	 *
 	 * @access public
-	 * @return string decrypted data by AES
+	 * @return string decrypted data by AES. If $cipyer or $key has empty value, return null.
 	 * @param  string cipher data for being decryption
 	 * @param  string decryption key
 	 *   - 128bit : 16 byte string
 	 *   - 192bit : 24 byte string
 	 *   - 256bit : 32 byte string
 	 */
-	static public function decrypt ($cipher, $key) {
+	static public function decrypt (?string $cipher, ?string $key): ?string {
 		if ( ! $cipher || ! $key )
 			return null;
 
-		$r = self::_decrypt ($cipher, $key);
+		if ( ! ($r = self::_decrypt ($cipher, $key)) )
+			return null;
 		$last = $r[strlen ($r) - 1];
 		$r = substr ($r, 0, strlen($r) - ord($last));
-		return $r;
-	}
-	// }}}
-
-	// {{{ +-- private (string) hex2bin ($v)
-	/**
-	 * Decodes a hexadecimally encoded binary string
-	 *
-	 * Support hex2bin function if php version is less than 5.4.0.
-	 *
-	 * @access public
-	 * @return string Returns the binary representation of the given data or FALSE on failure.
-	 * @param  string Hexadecimal representation of data.
-	 */
-	private function hex2bin ($v) {
-		if ( function_exists ('hex2bin') )
-			return hex2bin ($v);
-
-		if ( ! is_string ($v) )
-			return null;
-
-		$len = strlen ($v);
-		for ( $i=0; $i<$len; $i+=2 ) {
-			$r .= chr (hexdec ($v{$i} . $v{($i+1)}));
-		}
-
 		return $r;
 	}
 	// }}}

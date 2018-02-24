@@ -15,7 +15,7 @@ BSD 2-Clause
 
 ## Installation
 
-mysqlAES 2.x works with PHP 7 and later. Use mysqlAES-1 branch or 1.x version for use with pre-PHP 7 versions. The ___mysqlAES-1___ branch also supports php 7.
+mysqlAES 2.x works with PHP 7.1 and later. Use mysqlAES-1 branch or 1.x version for use with PHP 7.0 and before. The ___mysqlAES-1___ branch also supports php 7 and later.
 
 mysqlAES package needs follow external libraries.
 
