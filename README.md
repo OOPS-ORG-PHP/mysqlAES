@@ -86,10 +86,10 @@ and, write code as follow:
 See also [mysqlAES reference](http://pear.oops.org/docs/mysqlAES/mysqlAES.html) pages.
 If you want to mysqlAES-1 reference, see also [mysqlAES-1 reference](http://pear.oops.org/docs/mysqlAES-1/li_mysqlAES.html) pages.
 
-* oops\Encrypt\mysqlAES::hex(STRING)
-* oops\Encrypt\mysqlAES::unhex(STRING)
-* oops\Encrypt\mysqlAES::encrypt(STRING, KEY)
-* oops\Encrypt\mysqlAES::decrypt(ENCRYPTED_STRING, KEY)
+* (string|null) oops\Encrypt\mysqlAES::hex(STRING)
+* (string|null) oops\Encrypt\mysqlAES::unhex(STRING)
+* (string|null) oops\Encrypt\mysqlAES::encrypt(STRING, KEY)
+* (string|null) oops\Encrypt\mysqlAES::decrypt(ENCRYPTED_STRING, KEY)
 
 ### Examples:
 ```php
