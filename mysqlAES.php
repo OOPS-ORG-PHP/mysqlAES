@@ -241,7 +241,7 @@ Class mysqlAES {
 
 		if ( function_exists ('hex2bin') ) {
 			$r = hex2bin ($v);
-			return !$r ? null : $r;
+			return $r ? $r : null;
 		}
 
 		$len = strlen ($v);
