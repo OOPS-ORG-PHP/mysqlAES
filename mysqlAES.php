@@ -112,7 +112,7 @@ Class mysqlAES {
 			return null;
 
 		$r = hex2bin ($v);
-		return !$r ? null : $v;
+		return $r ? $r : null;
 	}
 	// }}}
 
@@ -166,7 +166,7 @@ Class mysqlAES {
 		$cipher .= str_repeat (chr ($padlen), $padlen);
 
 		$r = self::_encrypt ($cipher, $key);
-		return !$r ? null : $r;
+		return $r ? $r : null;
 	}
 	// }}}
 
