@@ -89,7 +89,8 @@ Class mysqlAES {
 	static public function hex (?string $v): ?string {
 		if ( ! $v )
 			return null;
-		return strtoupper (bin2hex ($v));
+		$r = strtoupper (bin2hex ($v));
+		return $r ? $r : null;
 	}
 	// }}}
 
